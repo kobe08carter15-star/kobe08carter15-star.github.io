@@ -3438,15 +3438,15 @@ function getFactorCategory(name) {
 
 // Sort ALL_FACTORS by category: basic → attack → defense → support → special → weapon
 (function() {
-    // 加上安全檢查：如果 ALL_FACTORS 不存在、不是陣列或長度為 0，就直接跳出不執行排序，防止網頁卡死
-    if (!ALL_FACTORS || !Array.isArray(ALL_FACTORS) || ALL_FACTORS.length === 0) {
-        console.warn("警告：ALL_FACTORS 尚未載入或資料為空，跳過排序。");
+    // 🔍 安全防線：如果找不到資料，先回報在控制台，但「不要讓網頁崩潰」
+    if (typeof ALL_FACTORS === 'undefined' || !ALL_FACTORS) {
+        console.error("錯誤：找不到 ALL_FACTORS 變數！請檢查 factor_data.js 是否成功載入或順序是否正確。");
         return; 
     }
-    
+
     var catRank = { basic: 1, attack: 2, defense: 3, support: 4, special: 5, weapon: 6 };
     ALL_FACTORS.sort(function(a, b) {
-        // 防止 a 或 b 是 undefined 導致 getFactorCategory 崩潰
+
         if (!a || !b) return 0; 
         
         var ra = catRank[getFactorCategory(a)] || 99;
