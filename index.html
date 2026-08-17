@@ -6,8 +6,8 @@
 <title>碧藍幻想 因子配裝模擬器</title>
 
 <!-- html2canvas for screenshot -->
+<script src="./碧藍幻想 因子配裝模擬器_files/factor_data.js"></script>
 <script src="./碧藍幻想 因子配裝模擬器_files/html2canvas.min.js">
-</script>
 <script src="./碧藍幻想 因子配裝模擬器_files/mastery_data_compact.js"></script>
 <script src="./碧藍幻想 因子配裝模擬器_files/mastery_tree.js"></script>
 
@@ -3440,7 +3440,7 @@ function getFactorCategory(name) {
 (function() {
     //
     if (typeof ALL_FACTORS === 'undefined' || !ALL_FACTORS) {
-        console.error;
+        console.error("ALL_FACTORS 未定義，請檢查 factor_data.js 是否載入");
         return; 
     }
 
