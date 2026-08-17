@@ -3438,22 +3438,13 @@ function getFactorCategory(name) {
 
 // Sort ALL_FACTORS by category: basic → attack → defense → support → special → weapon
 (function() {
-    //
-    if (typeof ALL_FACTORS === 'undefined' || !ALL_FACTORS) {
-        console.error("ALL_FACTORS 未定義，請檢查 factor_data.js 是否載入");
-        return; 
-    }
-
-    var catRank = { basic: 1, attack: 2, defense: 3, support: 4, special: 5, weapon: 6 };
-    ALL_FACTORS.sort(function(a, b) {
-
-        if (!a || !b) return 0; 
-        
-        var ra = catRank[getFactorCategory(a)] || 99;
-        var rb = catRank[getFactorCategory(b)] || 99;
-        if (ra !== rb) return ra - rb;
-        return String(a).localeCompare(String(b), 'zh-Hans-CN');
-    });
+  var catRank = { basic: 1, attack: 2, defense: 3, support: 4, special: 5, weapon: 6 };
+  ALL_FACTORS.sort(function(a, b) {
+    var ra = catRank[getFactorCategory(a)] || 99;
+    var rb = catRank[getFactorCategory(b)] || 99;
+    if (ra !== rb) return ra - rb;
+    return a.localeCompare(b, 'zh-Hans-CN');
+  });
 })();
 
 
